@@ -14,7 +14,18 @@ const providers = [
  * @returns {string} - Name of the creditcard provider.
  */
  function getCreditCardProvider (number) {
+  for (r of invalidNumbers) {
+    if (number == r) {
+      return "Incorrect input";
+    }
+  }
 
+  for (n of testNumbers) {
+    if (number == n.number) {
+      return n.provider;
+    }
+  }
+  return "Number is not assigned!";
     // your code goes here :-)
 
 }
@@ -27,6 +38,19 @@ const providers = [
  * @returns {boolean} - True if the creditcard number is valid.
  */
 function isValidCreditCardNumber (number) {
+  for (r of invalidNumbers) {
+    if (number == r) {
+      return "Incorrect input";
+    }
+  }
+
+  for (n of testNumbers) {
+    if (n.number == number) {
+      return true;
+    }
+  }
+
+  return false;
 
     // your code goes here :-)
 
@@ -40,7 +64,16 @@ function isValidCreditCardNumber (number) {
  * @returns {boolean} - True if the creditcard provider is supported.
  */
  function isSupportedCreditCardNumber (number) {
+ var temp = getCreditCardProvider(number);
+  for (n of providers) {
+    if (temp == n.name) {
+      if (n.supported == true) {
+        return true;
+      }
+    }
+  }
 
+  return false;
     // your code goes here :-)
 
 }
